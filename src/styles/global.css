@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg: #ffffff;
+  --fg: #111111;
+  --fg-muted: #555555;
+  --link: #0000ee;
+  --link-visited: #551a8b;
+  --link-hover-bg: #0000ee;
+  --link-hover-fg: #ffffff;
+  --border: #cccccc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0a;
+    --fg: #eeeeee;
+    --fg-muted: #999999;
+    --link: #0392da;
+    --link-visited: #8b6cc1;
+    --link-hover-bg: #0392da;
+    --link-hover-fg: #0a0a0a;
+    --border: #333333;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Roboto Mono', 'Consolas', 'Monaco', monospace;
+  background: var(--bg);
+  color: var(--fg);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2em 1em;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+a:hover {
+  background: var(--link-hover-bg);
+  color: var(--link-hover-fg);
+}
+
+nav {
+  margin-bottom: 2em;
+}
+
+nav a {
+  color: var(--fg);
+}
+
+nav a:visited {
+  color: var(--fg);
+}
+
+nav .sep {
+  color: var(--fg-muted);
+  margin: 0 0.5em;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin-bottom: 0.25em;
+}
+
+h1::after {
+  content: '================================';
+  display: block;
+  color: var(--fg-muted);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+h2 {
+  font-size: 1.1rem;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+h2::before {
+  content: '## ';
+  color: var(--fg-muted);
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+ul {
+  list-style: none;
+  margin-bottom: 1em;
+}
+
+ul li::before {
+  content: '- ';
+  color: var(--fg-muted);
+}
+
+section {
+  margin-bottom: 1em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+
+footer {
+  color: var(--fg-muted);
+  font-size: 0.85rem;
+}
+
+.skills-icons {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.skills-icons img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0);
+}
+
+@media (prefers-color-scheme: dark) {
+  .skills-icons img {
+    filter: invert(1);
+  }
+}
+
+.project {
+  margin-bottom: 1.5em;
+}
+
+.project-name {
+  font-weight: 700;
+}
+
+.project-desc {
+  color: var(--fg-muted);
+  margin-top: 0.25em;
+}

@@ -1,0 +1,44 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "keelan's corner of the internet" } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <nav>
+      <a href="/" class:list={[{ active: currentPath === '/' }]}>home</a>
+      <span class="sep">|</span>
+      <a href="/projects" class:list={[{ active: currentPath === '/projects' }]}>projects</a>
+    </nav>
+    <slot />
+    <hr />
+    <footer>
+      &copy; keelan
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+
+  nav a.active {
+    font-weight: 700;
+  }
+</style>

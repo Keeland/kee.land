@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kee.land/sitemap.xml

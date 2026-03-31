@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+
+const projects = [
+  {
+    name: 'AllianceUHC',
+    url: 'https://www.allianceuhc.space/',
+    description: "a minecraft ultrahardcore gamemode server that runs custom battle-royale style gamemodes. I'm the owner and developer of this server. This project consists of a java plugin, a website and a discord bot.",
+  },
+  {
+    name: 'Eyra (music)',
+    url: 'https://soundcloud.com/neweyra',
+    description: 'music alias for electronic music that i make.',
+  },
+];
+---
+
+<Base title="projects - kee.land" description="things i'm working on">
+  <h1>projects</h1>
+
+  <section>
+    {projects.map((project) => (
+      <div class="project">
+        <a class="project-name" href={project.url} target="_blank" rel="noopener">
+          {project.name}
+        </a>
+        <p class="project-desc">{project.description}</p>
+      </div>
+    ))}
+  </section>
+</Base>

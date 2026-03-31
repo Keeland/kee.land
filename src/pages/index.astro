@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+
+let topArtists: { name: string; url: string }[] = [];
+
+try {
+  const res = await fetch(
+    `https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=Keelando&api_key=${import.meta.env.LASTFM_API_KEY}&format=json&period=1month&limit=5`
+  );
+  const data = await res.json();
+  topArtists = data.topartists.artist.map((a: any) => ({
+    name: a.name,
+    url: a.url,
+  }));
+} catch {
+  // fallback: empty list, show static link instead
+}
+---
+
+<Base title="kee.land">
+  <h1>kee.land</h1>
+
+  <section id="about">
+    <h2>about</h2>
+    <p>
+      hi, i'm keeland. i like to code minecraft gamemodes, making music
+      and other techy stuff. welcome to my corner of the internet.
+    </p>
+  </section>
+
+  <section id="music">
+    <h2>music</h2>
+    <p>
+      i make electronic music as <a href="https://soundcloud.com/neweyra" target="_blank" rel="noopener">eyra</a>.
+    </p>
+    {topArtists.length > 0 ? (
+      <p>
+        top artists this month:
+        {topArtists.map((a, i) => (
+          <>
+            <a href={a.url} target="_blank" rel="noopener">{a.name}</a>{i < topArtists.length - 1 ? ', ' : ''}
+          </>
+        ))}
+        &mdash; <a href="https://www.last.fm/user/Keelando" target="_blank" rel="noopener">last.fm</a>
+      </p>
+    ) : (
+      <p>
+        see what i'm listening to on <a href="https://www.last.fm/user/Keelando" target="_blank" rel="noopener">last.fm</a>.
+      </p>
+    )}
+  </section>
+
+  <section id="skills">
+    <h2>skills</h2>
+    <div class="skills-icons">
+      <img src="/icons/java.svg" alt="Java" title="Java" />
+      <img src="/icons/papermc.svg" alt="Minecraft" title="Minecraft" />
+      <img src="/icons/database.svg" alt="SQL" title="SQL" />
+      <img src="/icons/flstudio.svg" alt="FL Studio" title="FL Studio" />
+      <img src="/icons/protools.svg" alt="Pro Tools" title="Pro Tools" />
+    </div>
+  </section>
+
+  <section id="links">
+    <h2>links</h2>
+    <ul>
+      <li><a href="https://github.com/keeland" target="_blank" rel="noopener">github</a></li>
+      <li><a href="https://discord.com/users/138467329620049920" target="_blank" rel="noopener">discord</a></li>
+      <li><a href="mailto:keelan@kee.land">email</a></li>
+      <li><a href="https://namemc.com/profile/Keelando.2/" target="_blank" rel="noopener">namemc</a></li>
+      <li><a href="https://twitter.com/keeland0" target="_blank" rel="noopener">twitter</a></li>
+    </ul>
+  </section>
+</Base>
